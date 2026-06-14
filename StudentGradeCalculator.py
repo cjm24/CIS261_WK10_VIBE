@@ -1,6 +1,3 @@
-#Chester Mitchell
-#CIS261
-#WK10 VIBE Coding 
 """Student Grade Calculator
 
 This program manages student records with three test scores,
@@ -121,9 +118,7 @@ def write_student_records(records: list[Student]) -> None:
         with open(FILE_NAME, "w", encoding="utf-8") as file:
             for record in records:
                 file.write(
-                    f"{record.name}|{record.student_id}|"
-                    f"{record.test1:.2f}|{record.test2:.2f}|"
-                    f"{record.test3:.2f}|{record.average:.2f}|{record.grade}\n"
+                    f"{record.name}|{record.student_id}|{record.test1:.2f}|{record.test2:.2f}|{record.test3:.2f}|{record.average:.2f}|{record.grade}\n"
                 )
     except OSError as exc:
         print(f"Error writing {FILE_NAME}: {exc}")
@@ -225,6 +220,7 @@ def get_single_key() -> str:
     if sys.platform.startswith("win"):
         try:
             import msvcrt
+
             key = msvcrt.getch()
             return key.decode("utf-8", errors="ignore")
         except Exception:
@@ -253,12 +249,13 @@ def main_menu(records: list[Student]) -> None:
         print("Choose an option: ", end="", flush=True)
 
         choice = get_single_key()
-        print()
+        print()  # Move to next line after selection
 
         if choice == "\x1b":
             print("Exiting and saving records...")
             write_student_records(records)
             break
+
         if choice == "1":
             add_student(records)
         elif choice == "2":
